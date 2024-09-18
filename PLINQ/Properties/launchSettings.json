@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "PLINQ": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}

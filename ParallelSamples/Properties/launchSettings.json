@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "ParallelSamples": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}
