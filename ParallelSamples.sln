@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3.Parallel", "Parallel\3.Pa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "4.PLINQ", "PLINQ\4.PLINQ.csproj", "{C964A380-DFA4-46FE-82BB-54C561194A34}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "0.CheckSum", "CheckSum\0.CheckSum.csproj", "{D01E5A9B-DAB9-404B-8E47-F499CB286205}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "5.Concurrent", "Concurrent\5.Concurrent.csproj", "{269E0A01-EC2B-4335-A75A-90F87ACBBFB7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{C964A380-DFA4-46FE-82BB-54C561194A34}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C964A380-DFA4-46FE-82BB-54C561194A34}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C964A380-DFA4-46FE-82BB-54C561194A34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D01E5A9B-DAB9-404B-8E47-F499CB286205}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D01E5A9B-DAB9-404B-8E47-F499CB286205}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D01E5A9B-DAB9-404B-8E47-F499CB286205}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D01E5A9B-DAB9-404B-8E47-F499CB286205}.Release|Any CPU.Build.0 = Release|Any CPU
+		{269E0A01-EC2B-4335-A75A-90F87ACBBFB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{269E0A01-EC2B-4335-A75A-90F87ACBBFB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{269E0A01-EC2B-4335-A75A-90F87ACBBFB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{269E0A01-EC2B-4335-A75A-90F87ACBBFB7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
