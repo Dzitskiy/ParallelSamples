@@ -6,25 +6,25 @@ internal class Program
     // Параллельное вычисление суммы простых чисел в заданном диапазоне
     // Натуральное число, большее 1 , называется простым, если оно ни на что не делится, кроме себя и 1. 
     private static void Main(string[] args)
-    { 
-        //Реализация с Threads
-        //new ThreadExecutor().DemoAsync();
-        //Реализация с Tasks
-        //new TaskExecutor().DemoAsync();
-        //Реализация с Parallel
-        //new ParallelExecutor().DemoAsync();
-        //Реализация с PLINQ
-        //new PlinqExecutor().DemoAsync();
+    {
+        # region IExecutor
 
-        IExecutor executor = new ThreadExecutor();
+        IExecutor executor = new СoncurrentExecutor();
+        
+        executor.DemoAsync();
 
         //var executors = new IExecutor[]
         //{
-        //    new ThreadExecutor(),
-        //    new TaskExecutor(),
-        //    new ParallelExecutor(),
-        //    new PlinqExecutor()
+        //    new ThreadExecutor(),     // Реализация с Threads
+        //    new TaskExecutor(),       // Реализация с Tasks
+        //    new ParallelExecutor(),   // Реализация с Parallel
+        //    new PlinqExecutor(),      // Реализация с PLINQ
+        //    new PlinqExecutor(),      // Реализация с PLINQ
+        //    new СoncurrentExecutor()  // Реализация с Concurrent Collections
+
         //};             
+
+        #endregion
 
         //Диапазон чисел
         const int N = 2;
@@ -57,7 +57,7 @@ internal class Program
 
         //}
 
-        #region executors
+        #region all executors
         /*
         foreach (var executor in executors)
         {
