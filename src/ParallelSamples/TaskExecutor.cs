@@ -30,7 +30,7 @@ namespace ParallelSamples
 
             async Task DoWork()
             {
-                //await Task.Delay(2000);
+                await Task.Delay(2000);
                 Console.WriteLine("DoWork");
             }
 

@@ -1,4 +1,6 @@
-﻿using ParallelSamples;
+﻿using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Running;
+using ParallelSamples;
 using System.Diagnostics;
 
 internal class Program
@@ -7,52 +9,51 @@ internal class Program
     // Натуральное число, большее 1 , называется простым, если оно ни на что не делится, кроме себя и 1. 
     private static void Main(string[] args)
     {
-        # region IExecutor
+        #region IExecutor
 
-        IExecutor executor = new СoncurrentExecutor();
-        
+        IExecutor executor = new TaskExecutor();
+
         executor.DemoAsync();
 
         //var executors = new IExecutor[]
         //{
-        //    new ThreadExecutor(),     // Реализация с Threads
-        //    new TaskExecutor(),       // Реализация с Tasks
-        //    new ParallelExecutor(),   // Реализация с Parallel
-        //    new PlinqExecutor(),      // Реализация с PLINQ
-        //    new PlinqExecutor(),      // Реализация с PLINQ
-        //    new СoncurrentExecutor()  // Реализация с Concurrent Collections
-
+        //    new ThreadExecutor()     // Реализация с Threads
+        //    , new TaskExecutor()       // Реализация с Tasks
+        //    , new ParallelExecutor()   // Реализация с Parallel
+        //    , new PlinqExecutor()      // Реализация с PLINQ
+        //    , new СoncurrentExecutor()  // Реализация с Concurrent Collections
         //};             
 
         #endregion
 
         //Диапазон чисел
         const int N = 2;
-        const int M = 10_000_000;
+        int M = 10_000_000;
 
         int[] sizes = { 10_000, 100_000, 1_000_000, 10_000_000, 100_000_000 };
 
-
         //foreach (int size in sizes)
         //{
-        Console.WriteLine($"Size: {N}");
+        //M = size;
+
+        Console.WriteLine($"Range size: {M}");
 
         var sw = Stopwatch.StartNew();
-        long result = CalculateSequential(N, M);
+        long sum = CalculateSequential(N, M);
         sw.Stop();
 
         var sequentialTime = sw.ElapsedMilliseconds;
-        Console.WriteLine($"SequentialSum: {sequentialTime}, ExecutionTime: {sequentialTime}");
+        Console.WriteLine($"SequentialSum: {sum}, ExecutionTime: {sequentialTime}");
 
         #region parallelSum
-        /*
+        /**/
         sw.Restart();
         long parallelSum = executor.CalculateSum(N, M);
         sw.Stop();
 
         var parallelTime = sw.ElapsedMilliseconds;
-        Console.WriteLine($"ParallelSum: {sequentialTime}, ExecutionTime: {parallelTime}");
-        */
+        Console.WriteLine($"ParallelSum: {parallelSum}, ExecutionTime: {parallelTime}");
+        /**/
         #endregion 
 
         //}
@@ -64,8 +65,11 @@ internal class Program
             Console.WriteLine(executor.GetType().Name);
             foreach (int size in sizes)
             {
+                //executor.DemoAsync();
+
                 Console.WriteLine($"Size: {size}");
                 sw.Restart();
+
                 long parallelSum = executor.CalculateSum(N, M);
                 sw.Stop();
                 var parallelTime = sw.ElapsedMilliseconds;
@@ -74,6 +78,12 @@ internal class Program
         }
         */
         #endregion
+
+        Console.WriteLine("Press any key...");
+        Console.ReadKey();
+
+        //BenchmarkRunner.Run<Benchmarks>();
+        //Console.WriteLine("Press any key to exit...");
     }
 
     #region Последовательная реализация

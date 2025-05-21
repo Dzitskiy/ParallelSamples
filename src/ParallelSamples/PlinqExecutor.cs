@@ -30,7 +30,7 @@ namespace ParallelSamples
 
             "abcdefg1234567890"
                 .AsParallel()
-                .AsOrdered()
+                .AsUnordered()
                 .Select(c => char.ToUpper(c))
             .ForAll(Console.WriteLine);
 

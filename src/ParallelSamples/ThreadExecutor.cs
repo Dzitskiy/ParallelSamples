@@ -34,9 +34,12 @@ namespace ParallelSamples
 
             IExecutor.Log(now, $"status {t.ThreadState}");
 
-            //Log($"status {Thread.GetDomain().}");
-            //Log($"status {t.}");
-            //Log($"status {t.ThreadState}");
+            Log($"Domain Id {Thread.GetDomain().Id}");
+            Log($"Name {t.Name}");
+            Log($"IsBackground {t.IsBackground}");
+            Log($"IsThreadPoolThread {t.IsThreadPoolThread}");
+            Log($"ManagedThreadId {t.ManagedThreadId}");
+            Log($"Priority {t.Priority}");
 
             IExecutor.Log(now, $"status {t.ThreadState}");
 
@@ -46,16 +49,17 @@ namespace ParallelSamples
 
             Console.WriteLine("finish");
 
-            //void Log(string message)
-            //{
-            //    Console.WriteLine($"{(DateTime.Now - now).TotalMilliseconds})\t [{Environment.CurrentManagedThreadId}] | {message}");
-            //}
+            void Log(string message)
+            {
+                Console.WriteLine($"{(DateTime.Now - now).TotalMilliseconds})\t [{Environment.CurrentManagedThreadId}] | {message}");
+            }
 
         }
 
         public long CalculateSum(int n, int m)
         {
             //Разделим диапазон[N, M] на K непересекающихся поддиапазонов(K = количество логических ядер CPU).
+            
             int cores = Environment.ProcessorCount;
             long chunkSize = (m - n + 1L) / cores;
             var threads = new List<Thread>(cores);
