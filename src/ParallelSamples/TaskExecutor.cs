@@ -21,7 +21,7 @@ namespace ParallelSamples
             var d = Task.Delay(1000);
 
 
-            var t = DoWork();
+            Task t = DoWork();
 
             await Task.WhenAll(d, t);
             //await Task.WhenAny(d, t);

@@ -96,9 +96,9 @@ namespace ParallelSamples
         public long CalculateSum(int n, int m)
         {
             return 
-                CalculateWithConcurrentBag(n,  m);
+                //CalculateWithConcurrentBag(n,  m);
                 // CalculateWithConcurrentQueue(n,  m);
-                // CalculateWithConcurrentDictionary(n,  m);
+                 CalculateWithConcurrentDictionary(n,  m);
         }
 
         #region 

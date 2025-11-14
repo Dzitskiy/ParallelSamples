@@ -27,6 +27,8 @@ namespace ParallelSamples
                 Console.WriteLine(item);
             }
 
+            Console.WriteLine(string.Join(", ", t));
+
 
             "abcdefg1234567890"
                 .AsParallel()
@@ -47,7 +49,9 @@ namespace ParallelSamples
 
         public long CalculateSum(int n, int m)
         {
-        // C PLINQ можно использовать  методы AsParallel(), WithDegreeOfParallelism() и Aggregate() для распараллеливания LINQ-запроса.
+            // C PLINQ можно использовать  методы AsParallel(), WithDegreeOfParallelism() и Aggregate() для распараллеливания LINQ-запроса.
+
+            Console.WriteLine($"ProcessorCount: {Environment.ProcessorCount}");
 
             return Enumerable.Range(n, m - n + 1)
                 .AsParallel()

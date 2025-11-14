@@ -42,6 +42,5 @@
         {
             Console.WriteLine($"{(DateTime.Now - startDateTime).TotalMilliseconds})\t [{Environment.CurrentManagedThreadId}] | {message}");
         }
-
     }
 }

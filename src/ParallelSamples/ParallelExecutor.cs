@@ -42,7 +42,7 @@ namespace ParallelSamples
             void DoWork(string i)
             {
                 Thread.Sleep(100);
-                IExecutor.Log(now, $"DoWork {i}");
+                IExecutor.Log(now, $"DoWork {i?.ToUpper()}");
                 //Thread.Sleep(2000);
             }
 
