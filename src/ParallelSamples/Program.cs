@@ -1,16 +1,13 @@
 ﻿using ParallelSamples;
 using System.Diagnostics;
 
-namespace ParallelSamples
-{
     // Параллельное вычисление суммы простых чисел в заданном диапазоне
     // Натуральное число, большее 1 , называется простым, если оно ни на что не делится, кроме себя и 1. 
-    private static void Main(string[] args)
-    {
+
         # region IExecutor
 
         IExecutor executor = new СoncurrentExecutor();
-        
+
         executor.DemoAsync();
 
         //var executors = new IExecutor[]
@@ -24,13 +21,13 @@ namespace ParallelSamples
 
         //};             
 
-            #endregion
+        #endregion
 
         //Диапазон чисел
         const int N = 2;
         const int M = 10_000_000;
 
-            int[] sizes = { //10_000,
+        int[] sizes = { //10_000,
                 100_000, 1_000_000, 10_000_000,
                 //100_000_000
                 };
@@ -57,9 +54,9 @@ namespace ParallelSamples
         var parallelTime = sw.ElapsedMilliseconds;
         Console.WriteLine($"ParallelSum: {sequentialTime}, ExecutionTime: {parallelTime}");
         */
-        #endregion 
+        #endregion
 
-                //}
+        //}
 
         #region all executors
         /*
@@ -78,38 +75,36 @@ namespace ParallelSamples
         }
         */
         #endregion
-    }
+    
 
-            #region Последовательная реализация
+        #region Последовательная реализация
 
-            /// Метод вычисления суммы простых чисел в заданном диапазоне
-            static long CalculateSequential(int n, int m)
+        /// Метод вычисления суммы простых чисел в заданном диапазоне
+        static long CalculateSequential(int n, int m)
+        {
+            long sum = 0;
+            for (int num = n; num <= m; num++)
             {
-                long sum = 0;
-                for (int num = n; num <= m; num++)
-                {
-                    if (IsPrime(num))
-                        sum += num;
-                }
-                return sum;
+                if (IsPrime(num))
+                    sum += num;
             }
-
-            // Метод проверки - является ли число простым
-            static bool IsPrime(int number)
-            {
-                if (number < 2) return false;
-                if (number == 2) return true;
-                if (number % 2 == 0) return false;
-
-                for (int i = 3; i <= Math.Sqrt(number); i += 2)
-                    if (number % i == 0)
-                        return false;
-
-                return true;
-            }
-
-            #endregion
-
+            return sum;
         }
-    }
-}
+
+        // Метод проверки - является ли число простым
+        static bool IsPrime(int number)
+        {
+            if (number < 2) return false;
+            if (number == 2) return true;
+            if (number % 2 == 0) return false;
+
+            for (int i = 3; i <= Math.Sqrt(number); i += 2)
+                if (number % i == 0)
+                    return false;
+
+            return true;
+        }
+
+        #endregion
+
+    
