@@ -1,36 +1,39 @@
-﻿using BenchmarkDotNet.Attributes;
-using BenchmarkDotNet.Running;
-using ParallelSamples;
+﻿using ParallelSamples;
 using System.Diagnostics;
 
-internal class Program
+namespace ParallelSamples
 {
     // Параллельное вычисление суммы простых чисел в заданном диапазоне
     // Натуральное число, большее 1 , называется простым, если оно ни на что не делится, кроме себя и 1. 
     private static void Main(string[] args)
     {
-        #region IExecutor
+        # region IExecutor
 
-        IExecutor executor = new TaskExecutor();
-
+        IExecutor executor = new СoncurrentExecutor();
+        
         executor.DemoAsync();
 
         //var executors = new IExecutor[]
         //{
-        //    new ThreadExecutor()     // Реализация с Threads
-        //    , new TaskExecutor()       // Реализация с Tasks
-        //    , new ParallelExecutor()   // Реализация с Parallel
-        //    , new PlinqExecutor()      // Реализация с PLINQ
-        //    , new СoncurrentExecutor()  // Реализация с Concurrent Collections
+        //    new ThreadExecutor(),     // Реализация с Threads
+        //    new TaskExecutor(),       // Реализация с Tasks
+        //    new ParallelExecutor(),   // Реализация с Parallel
+        //    new PlinqExecutor(),      // Реализация с PLINQ
+        //    new PlinqExecutor(),      // Реализация с PLINQ
+        //    new СoncurrentExecutor()  // Реализация с Concurrent Collections
+
         //};             
 
-        #endregion
+            #endregion
 
         //Диапазон чисел
         const int N = 2;
-        int M = 10_000_000;
+        const int M = 10_000_000;
 
-        int[] sizes = { 10_000, 100_000, 1_000_000, 10_000_000, 100_000_000 };
+            int[] sizes = { //10_000,
+                100_000, 1_000_000, 10_000_000,
+                //100_000_000
+                };
 
         //foreach (int size in sizes)
         //{
@@ -39,24 +42,24 @@ internal class Program
         Console.WriteLine($"Range size: {M}");
 
         var sw = Stopwatch.StartNew();
-        long sum = CalculateSequential(N, M);
+        long result = CalculateSequential(N, M);
         sw.Stop();
 
         var sequentialTime = sw.ElapsedMilliseconds;
-        Console.WriteLine($"SequentialSum: {sum}, ExecutionTime: {sequentialTime}");
+        Console.WriteLine($"SequentialSum: {sequentialTime}, ExecutionTime: {sequentialTime}");
 
         #region parallelSum
-        /**/
+        /*
         sw.Restart();
         long parallelSum = executor.CalculateSum(N, M);
         sw.Stop();
 
         var parallelTime = sw.ElapsedMilliseconds;
-        Console.WriteLine($"ParallelSum: {parallelSum}, ExecutionTime: {parallelTime}");
-        /**/
+        Console.WriteLine($"ParallelSum: {sequentialTime}, ExecutionTime: {parallelTime}");
+        */
         #endregion 
 
-        //}
+                //}
 
         #region all executors
         /*
@@ -65,11 +68,8 @@ internal class Program
             Console.WriteLine(executor.GetType().Name);
             foreach (int size in sizes)
             {
-                //executor.DemoAsync();
-
                 Console.WriteLine($"Size: {size}");
                 sw.Restart();
-
                 long parallelSum = executor.CalculateSum(N, M);
                 sw.Stop();
                 var parallelTime = sw.ElapsedMilliseconds;
@@ -78,42 +78,38 @@ internal class Program
         }
         */
         #endregion
-
-        Console.WriteLine("Press any key...");
-        Console.ReadKey();
-
-        //BenchmarkRunner.Run<Benchmarks>();
-        //Console.WriteLine("Press any key to exit...");
     }
 
-    #region Последовательная реализация
+            #region Последовательная реализация
 
-    /// Метод вычисления суммы простых чисел в заданном диапазоне
-    static long CalculateSequential(int n, int m)
-    {
-        long sum = 0;
-        for (int num = n; num <= m; num++)
-        {
-            if (IsPrime(num))
-                sum += num;
+            /// Метод вычисления суммы простых чисел в заданном диапазоне
+            static long CalculateSequential(int n, int m)
+            {
+                long sum = 0;
+                for (int num = n; num <= m; num++)
+                {
+                    if (IsPrime(num))
+                        sum += num;
+                }
+                return sum;
+            }
+
+            // Метод проверки - является ли число простым
+            static bool IsPrime(int number)
+            {
+                if (number < 2) return false;
+                if (number == 2) return true;
+                if (number % 2 == 0) return false;
+
+                for (int i = 3; i <= Math.Sqrt(number); i += 2)
+                    if (number % i == 0)
+                        return false;
+
+                return true;
+            }
+
+            #endregion
+
         }
-        return sum;
     }
-
-    // Метод проверки - является ли число простым
-    static bool IsPrime(int number)
-    {
-        if (number < 2) return false;
-        if (number == 2) return true;
-        if (number % 2 == 0) return false;
-
-        for (int i = 3; i <= Math.Sqrt(number); i += 2)
-            if (number % i == 0)
-                return false;
-
-        return true;
-    }
-
-    #endregion
-
 }
