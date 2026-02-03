@@ -8,7 +8,7 @@ using System.Diagnostics;
 
         IExecutor executor = new СoncurrentExecutor();
 
-        executor.DemoAsync();
+        //executor.DemoAsync();
 
         //var executors = new IExecutor[]
         //{
@@ -39,21 +39,21 @@ using System.Diagnostics;
         Console.WriteLine($"Range size: {M}");
 
         var sw = Stopwatch.StartNew();
-        long result = CalculateSequential(N, M);
+        long sequentialSum = CalculateSequential(N, M);
         sw.Stop();
 
         var sequentialTime = sw.ElapsedMilliseconds;
-        Console.WriteLine($"SequentialSum: {sequentialTime}, ExecutionTime: {sequentialTime}");
+        Console.WriteLine($"SequentialSum: {sequentialSum}, ExecutionTime: {sequentialTime}");
 
         #region parallelSum
-        /*
+        /**/
         sw.Restart();
         long parallelSum = executor.CalculateSum(N, M);
         sw.Stop();
 
         var parallelTime = sw.ElapsedMilliseconds;
-        Console.WriteLine($"ParallelSum: {sequentialTime}, ExecutionTime: {parallelTime}");
-        */
+        Console.WriteLine($"ParallelSum: {parallelSum}, ExecutionTime: {parallelTime}");
+        /**/
         #endregion
 
         //}

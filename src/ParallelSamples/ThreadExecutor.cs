@@ -68,6 +68,10 @@ namespace ParallelSamples
             
             int cores = Environment.ProcessorCount;
             long chunkSize = (m - n + 1L) / cores;
+
+            //Console.WriteLine($"cores: {cores}");
+            //Console.WriteLine($"chunkSize: {chunkSize}");       
+
             var threads = new List<Thread>(cores);
             long total = 0;
             object lockObj = new();

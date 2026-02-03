@@ -23,6 +23,9 @@ namespace ParallelSamples
 
             Task t = DoWork();
 
+            Console.WriteLine($"{t}");
+
+
             await Task.WhenAll(d, t);
             //await Task.WhenAny(d, t);
 

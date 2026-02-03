@@ -37,6 +37,13 @@ namespace ParallelSamples
 
             Console.WriteLine("finish");
 
+            "abcdefg1234567890"
+             .AsParallel()
+             .Select(c => char.ToUpper(c))
+         .ForAll(Console.WriteLine);
+
+            Console.WriteLine("finish");
+
             void DoWork(string i)
             {
                 Thread.Sleep(100);
