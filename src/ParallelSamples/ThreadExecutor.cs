@@ -25,7 +25,13 @@ namespace ParallelSamples
                 d = 10 + a;
             });
 
-            IExecutor.Log(now, $"status {t.ThreadState}");
+            IExecutor.Log(now, $"Name {t.Name}");
+            IExecutor.Log(now, $"ThreadState {t.ThreadState}");
+            IExecutor.Log(now, $"Priority {t.Priority}");
+            IExecutor.Log(now, $"IsAlive {t.IsAlive}");
+            IExecutor.Log(now, $"IsBackground {t.IsBackground}");
+            IExecutor.Log(now, $"IsThreadPoolThread {t.IsThreadPoolThread}");
+            IExecutor.Log(now, $"ManagedThreadId {t.ManagedThreadId}");
 
             t.Start();
 
